@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-page="Create">Adaugă proprietate</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Tip_oferta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Zona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Nr_camere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Suprafata)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Amplasament)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietate[0].Adresa)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Proprietate)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tip_oferta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nr_camere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suprafata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amplasament)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editează</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Șterge</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

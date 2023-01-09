@@ -1,0 +1,59 @@
+﻿@page "/"
+@model ProiectWeb.Pages.Facturi.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-page="Create">Creează o factură</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Contact.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Proprietate.Adresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].suma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Data)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Factura)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proprietate.Adresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.suma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+
+
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Editează</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.ID">Șterge</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
