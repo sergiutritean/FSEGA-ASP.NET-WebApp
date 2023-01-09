@@ -14,7 +14,7 @@ namespace ProiectWeb.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     suma = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Data = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,9 +27,9 @@ namespace ProiectWeb.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nr_tel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nume = table.Column<string>(type: "text", nullable: true),
+                    Nr_tel = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
                     FacturaID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -49,12 +49,12 @@ namespace ProiectWeb.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tip_oferta = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zona = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tip_oferta = table.Column<string>(type: "text", nullable: true),
+                    Zona = table.Column<string>(type: "text", nullable: true),
                     Nr_camere = table.Column<int>(type: "int", nullable: false),
                     Suprafata = table.Column<int>(type: "int", nullable: false),
-                    Amplasament = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amplasament = table.Column<string>(type: "text", nullable: true),
+                    Adresa = table.Column<string>(type: "text", nullable: true),
                     FacturaID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
