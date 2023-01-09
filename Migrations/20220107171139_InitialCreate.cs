@@ -12,9 +12,12 @@ namespace ProiectWeb.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation(
+                            "Npgsql:ValueGenerationStrategy", 
+                            Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.SerialColumn
+                        ),
                     suma = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    Data = table.Column<DateTime>(type: "timestamp", nullable: false)
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +29,10 @@ namespace ProiectWeb.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation(
+                            "Npgsql:ValueGenerationStrategy", 
+                            Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.SerialColumn
+                        ),
                     Nume = table.Column<string>(type: "text", nullable: true),
                     Nr_tel = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
@@ -48,7 +54,10 @@ namespace ProiectWeb.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation(
+                            "Npgsql:ValueGenerationStrategy", 
+                            Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.SerialColumn
+                        ),
                     Tip_oferta = table.Column<string>(type: "text", nullable: true),
                     Zona = table.Column<string>(type: "text", nullable: true),
                     Nr_camere = table.Column<int>(type: "int", nullable: false),
