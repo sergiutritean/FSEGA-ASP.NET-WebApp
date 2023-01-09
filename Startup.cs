@@ -28,7 +28,7 @@ namespace ProiectWeb
             services.AddRazorPages();
 
             services.AddDbContext<ProiectWebContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProiectWebContext")));
+                    options.UseNpgsql(Configuration.GetConnectionString("ProiectWebContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
