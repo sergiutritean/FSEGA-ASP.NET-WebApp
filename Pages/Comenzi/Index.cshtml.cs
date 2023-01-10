@@ -19,13 +19,13 @@ namespace ProiectWeb.Pages.Facturi
             _context = context;
         }
 
-        public IList<Factura> Factura { get;set; }
+        public IList<Comanda> Comanda { get;set; }
 
         public async Task OnGetAsync()
         {
-            Factura = await _context.Factura
-                .Include(b => b.Contact)
-                .Include(c => c.Proprietate)
+            Comanda = await _context.Comanda
+                .Include(b => b.Client)
+                .Include(c => c.Foodtruck)
                 .ToListAsync();
 
         }

@@ -6,13 +6,29 @@
 
   <ItemGroup>
     <Compile Remove="Pages\Index.cshtml.cs" />
+    <Compile Remove="Pages\Facturi\Create.cshtml.cs" />
+    <Compile Remove="Pages\Proprietati\Details.cshtml.cs" />
+    <Compile Remove="Pages\Facturi\Index.cshtml.cs" />
+    <Compile Remove="Pages\Facturi\Details.cshtml.cs" />
+    <Compile Remove="Pages\Facturi\Delete.cshtml.cs" />
+    <Compile Remove="Pages\Facturi\Edit.cshtml.cs" />
+    <Compile Remove="Pages\Proprietati\Delete.cshtml.cs" />
+    <Compile Remove="Pages\Proprietati\Create.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Pages\Index.cshtml" />
+    <Content Remove="Pages\Facturi\Create.cshtml" />
+    <Content Remove="Pages\Facturi\Details.cshtml" />
+    <Content Remove="Pages\Facturi\Index.cshtml" />
+    <Content Remove="Pages\Facturi\Edit.cshtml" />
+    <Content Remove="Pages\Proprietati\Delete.cshtml" />
+    <Content Remove="Pages\Proprietati\Create.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +40,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Proprietati" />
   </ItemGroup>
 
 </Project>

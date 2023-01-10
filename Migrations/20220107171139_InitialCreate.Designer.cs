@@ -21,7 +21,7 @@ namespace ProiectWeb.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProiectWeb.Models.Contact", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Client", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -31,7 +31,7 @@ namespace ProiectWeb.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FacturaID")
+                    b.Property<int?>("ComandaID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nr_tel")
@@ -42,12 +42,12 @@ namespace ProiectWeb.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("FacturaID");
+                    b.HasIndex("ComandaID");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Factura", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Comanda", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -62,10 +62,10 @@ namespace ProiectWeb.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Factura");
+                    b.ToTable("Comanda");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Proprietate", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Foodtruck", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -78,7 +78,7 @@ namespace ProiectWeb.Migrations
                     b.Property<string>("Amplasament")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FacturaID")
+                    b.Property<int?>("ComandaID")
                         .HasColumnType("int");
 
                     b.Property<int>("Nr_camere")
@@ -95,30 +95,30 @@ namespace ProiectWeb.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("FacturaID");
+                    b.HasIndex("ComandaID");
 
-                    b.ToTable("Proprietate");
+                    b.ToTable("Foodtruck");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Contact", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Client", b =>
                 {
-                    b.HasOne("ProiectWeb.Models.Factura", null)
-                        .WithMany("Contact")
-                        .HasForeignKey("FacturaID");
+                    b.HasOne("ProiectWeb.Models.Comanda", null)
+                        .WithMany("Client")
+                        .HasForeignKey("ComandaID");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Proprietate", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Foodtruck", b =>
                 {
-                    b.HasOne("ProiectWeb.Models.Factura", null)
-                        .WithMany("Proprietate")
-                        .HasForeignKey("FacturaID");
+                    b.HasOne("ProiectWeb.Models.Comanda", null)
+                        .WithMany("Foodtruck")
+                        .HasForeignKey("ComandaID");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Factura", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Comanda", b =>
                 {
-                    b.Navigation("Contact");
+                    b.Navigation("Client");
 
-                    b.Navigation("Proprietate");
+                    b.Navigation("Foodtruck");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-page="Create">Adaugă Foodtruck</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Foodtruck[0].Tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foodtruck[0].Adresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foodtruck[0].Adresa)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Foodtruck)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editează</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Șterge</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

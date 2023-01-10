@@ -25,7 +25,7 @@ namespace ProiectWeb.Pages.Clienti
         }
 
         [BindProperty]
-        public Contact Contact { get; set; }
+        public Client Client { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace ProiectWeb.Pages.Clienti
                 return Page();
             }
 
-            _context.Contact.Add(Contact);
+            _context.Client.Add(Client);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -19,7 +19,7 @@ namespace ProiectWeb.Pages.Facturi
             _context = context;
         }
 
-        public Factura Factura { get; set; }
+        public Comanda Comanda { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,10 @@ namespace ProiectWeb.Pages.Facturi
                 return NotFound();
             }
 
-            Factura = await _context.Factura.Include(b => b.Contact).Include(c => c.Proprietate).FirstOrDefaultAsync(m => m.ID == id);
+            Comanda = await _context.Comanda.Include(b => b.Client).Include(c => c.Foodtruck).FirstOrDefaultAsync(m => m.ID == id);
 
 
-            if (Factura == null)
+            if (Comanda == null)
             {
                 return NotFound();
             }

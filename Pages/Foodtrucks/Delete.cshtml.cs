@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ProiectWeb.Data;
 using ProiectWeb.Models;
 
-namespace ProiectWeb.Pages.Proprietati;
+namespace ProiectWeb.Pages.Foodtrucks;
 
 public class DeleteModel : PageModel
 {
@@ -16,15 +16,15 @@ public class DeleteModel : PageModel
         _context = context;
     }
 
-    [BindProperty] public Proprietate Proprietate { get; set; }
+    [BindProperty] public Foodtruck Foodtruck { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
         if (id == null) return NotFound();
 
-        Proprietate = await _context.Proprietate.FirstOrDefaultAsync(m => m.ID == id);
+        Foodtruck = await _context.Foodtruck.FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Proprietate == null) return NotFound();
+        if (Foodtruck == null) return NotFound();
         return Page();
     }
 
@@ -32,11 +32,11 @@ public class DeleteModel : PageModel
     {
         if (id == null) return NotFound();
 
-        Proprietate = await _context.Proprietate.FindAsync(id);
+        Foodtruck = await _context.Foodtruck.FindAsync(id);
 
-        if (Proprietate != null)
+        if (Foodtruck != null)
         {
-            _context.Proprietate.Remove(Proprietate);
+            _context.Foodtruck.Remove(Foodtruck);
             await _context.SaveChangesAsync();
         }
 

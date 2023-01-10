@@ -19,11 +19,11 @@ namespace ProiectWeb.Pages.Clienti
             _context = context;
         }
 
-        public IList<Contact> Contact { get;set; }
+        public IList<Client> Client { get;set; }
 
         public async Task OnGetAsync()
         {
-            Contact = await _context.Contact.ToListAsync();
+            Client = await _context.Client.ToListAsync();
         }
     }
 }

@@ -2,9 +2,11 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProiectWeb.Data;
+
+#nullable disable
 
 namespace ProiectWeb.Migrations
 {
@@ -15,108 +17,114 @@ namespace ProiectWeb.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("ProiectWeb.Models.Contact", b =>
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("ProiectWeb.Models.Client", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("Nr_tel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NrTel")
+                        .HasColumnType("text");
 
                     b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Factura", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Comanda", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer");
 
-                    b.Property<int?>("ContactID")
-                        .HasColumnType("int");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("ClientID")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("ProprietateID")
-                        .HasColumnType("int");
+                    b.Property<string>("Descriere")
+                        .HasColumnType("text");
 
-                    b.Property<decimal>("suma")
-                        .HasColumnType("decimal(6,2)");
+                    b.Property<int>("FoodtruckID")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Suma")
+                        .HasColumnType("decimal(6, 2)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ContactID");
+                    b.HasIndex("ClientID");
 
-                    b.HasIndex("ProprietateID");
+                    b.HasIndex("FoodtruckID");
 
-                    b.ToTable("Factura");
+                    b.ToTable("Comanda");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Proprietate", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Foodtruck", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Adresa")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("Amplasament")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Nume")
+                        .HasColumnType("text");
 
-                    b.Property<int>("Nr_camere")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Suprafata")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Tip_oferta")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zona")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Tip")
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Proprietate");
+                    b.ToTable("Foodtruck");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Factura", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Comanda", b =>
                 {
-                    b.HasOne("ProiectWeb.Models.Contact", null)
-                        .WithMany("Facturi")
-                        .HasForeignKey("ContactID");
+                    b.HasOne("ProiectWeb.Models.Client", "Client")
+                        .WithMany("Comenzi")
+                        .HasForeignKey("ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("ProiectWeb.Models.Proprietate", null)
-                        .WithMany("Facturi")
-                        .HasForeignKey("ProprietateID");
+                    b.HasOne("ProiectWeb.Models.Foodtruck", "Foodtruck")
+                        .WithMany("Comenzi")
+                        .HasForeignKey("FoodtruckID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Foodtruck");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Contact", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Client", b =>
                 {
-                    b.Navigation("Facturi");
+                    b.Navigation("Comenzi");
                 });
 
-            modelBuilder.Entity("ProiectWeb.Models.Proprietate", b =>
+            modelBuilder.Entity("ProiectWeb.Models.Foodtruck", b =>
                 {
-                    b.Navigation("Facturi");
+                    b.Navigation("Comenzi");
                 });
 #pragma warning restore 612, 618
         }

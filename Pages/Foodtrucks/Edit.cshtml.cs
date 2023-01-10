@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ProiectWeb.Data;
 using ProiectWeb.Models;
 
-namespace ProiectWeb.Pages.Proprietati;
+namespace ProiectWeb.Pages.Foodtrucks;
 
 public class EditModel : PageModel
 {
@@ -17,15 +17,15 @@ public class EditModel : PageModel
         _context = context;
     }
 
-    [BindProperty] public Proprietate Proprietate { get; set; }
+    [BindProperty] public Foodtruck Foodtruck { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
         if (id == null) return NotFound();
 
-        Proprietate = await _context.Proprietate.FirstOrDefaultAsync(m => m.ID == id);
+        Foodtruck = await _context.Foodtruck.FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Proprietate == null) return NotFound();
+        if (Foodtruck == null) return NotFound();
         return Page();
     }
 
@@ -35,7 +35,7 @@ public class EditModel : PageModel
     {
         if (!ModelState.IsValid) return Page();
 
-        _context.Attach(Proprietate).State = EntityState.Modified;
+        _context.Attach(Foodtruck).State = EntityState.Modified;
 
         try
         {
@@ -43,7 +43,7 @@ public class EditModel : PageModel
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!ProprietateExists(Proprietate.ID))
+            if (!FoodtruckExists(Foodtruck.ID))
                 return NotFound();
             throw;
         }
@@ -51,8 +51,8 @@ public class EditModel : PageModel
         return RedirectToPage("./Index");
     }
 
-    private bool ProprietateExists(int id)
+    private bool FoodtruckExists(int id)
     {
-        return _context.Proprietate.Any(e => e.ID == id);
+        return _context.Foodtruck.Any(e => e.ID == id);
     }
 }

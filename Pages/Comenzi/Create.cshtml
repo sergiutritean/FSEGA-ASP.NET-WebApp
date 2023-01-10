@@ -1,0 +1,59 @@
+﻿@page
+@model ProiectWeb.Pages.Facturi.CreateModel
+
+@{
+    ViewData["Title"] = "Adaugă";
+}
+
+<h1>Adaugă</h1>
+
+<h4>Comanda</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Comanda.ClientID" class="control-label">ID Client</label>
+                <select asp-for="Comanda.ClientID" class="form-control" asp-items="ViewBag.ClientID" required>
+                </select>
+                <span asp-validation-for="Comanda.ClientID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comanda.FoodtruckID" class="control-label">Adresa foodtruck</label>
+                <select asp-for="Comanda.FoodtruckID" class="form-control" asp-items="ViewBag.FoodtruckID" required>
+                </select>
+                <span asp-validation-for="Comanda.FoodtruckID" class="text-danger"></span>
+            </div>
+            <div>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Comanda.Descriere" class="control-label"></label>
+                <input asp-for="Comanda.Descriere" class="form-control" required/>
+                <span asp-validation-for="Comanda.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comanda.Suma" class="control-label"></label>
+                <input asp-for="Comanda.Suma" class="form-control" required/>
+                <span asp-validation-for="Comanda.Suma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comanda.Data" class="control-label"></label>
+                <input asp-for="Comanda.Data" class="form-control" required/>
+                <span asp-validation-for="Comanda.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Înapoi la listă</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

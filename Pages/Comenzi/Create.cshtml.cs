@@ -21,13 +21,13 @@ namespace ProiectWeb.Pages.Facturi
 
         public IActionResult OnGet()
         {
-            ViewData["ContactID"] = new SelectList(_context.Set<Contact>(), "ID", "Nume");
-            ViewData["ProprietateID"] = new SelectList(_context.Set<Proprietate>(), "ID", "Adresa");
+            ViewData["ClientID"] = new SelectList(_context.Set<Client>(), "ID", "Nume");
+            ViewData["FoodtruckID"] = new SelectList(_context.Set<Foodtruck>(), "ID", "Adresa");
             return Page();
         }
 
         [BindProperty]
-        public Factura Factura { get; set; }
+        public Comanda Comanda { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -37,7 +37,7 @@ namespace ProiectWeb.Pages.Facturi
                 return Page();
             }
 
-            _context.Factura.Add(Factura);
+            _context.Comanda.Add(Comanda);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

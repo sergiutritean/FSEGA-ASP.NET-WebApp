@@ -7,22 +7,22 @@
 
 
 <p>
-    <a asp-page="Create">Creează o factură</a>
+    <a asp-page="Create">Creează o comanda</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Contact.Nume)
+                @Html.DisplayNameFor(model => model.Comanda[0].Client.Nume)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Proprietate.Adresa)
+                @Html.DisplayNameFor(model => model.Comanda[0].Foodtruck.Adresa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].suma)
+                @Html.DisplayNameFor(model => model.Comanda[0].Suma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Data)
+                @Html.DisplayNameFor(model => model.Comanda[0].Data)
             </th>
 
 
@@ -30,17 +30,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Factura)
+        @foreach (var item in Model.Comanda)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Contact.Nume)
+                    @Html.DisplayFor(modelItem => item.Client.Nume)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Proprietate.Adresa)
+                    @Html.DisplayFor(modelItem => item.Foodtruck.Adresa)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.suma)
+                    @Html.DisplayFor(modelItem => item.Suma)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Data)

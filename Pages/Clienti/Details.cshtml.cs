@@ -19,7 +19,7 @@ namespace ProiectWeb.Pages.Clienti
             _context = context;
         }
 
-        public Contact Contact { get; set; }
+        public Client Client { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace ProiectWeb.Pages.Clienti
                 return NotFound();
             }
 
-            Contact = await _context.Contact.FirstOrDefaultAsync(m => m.ID == id);
+            Client = await _context.Client.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Contact == null)
+            if (Client == null)
             {
                 return NotFound();
             }

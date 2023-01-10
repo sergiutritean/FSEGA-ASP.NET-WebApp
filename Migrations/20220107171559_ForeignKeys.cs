@@ -7,64 +7,64 @@ namespace ProiectWeb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Contact_Factura_FacturaID",
-                table: "Contact");
+                name: "FK_Client_Comanda_ComandaID",
+                table: "Client");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Proprietate_Factura_FacturaID",
-                table: "Proprietate");
+                name: "FK_Foodtruck_Comanda_ComandaID",
+                table: "Foodtruck");
 
             migrationBuilder.DropIndex(
-                name: "IX_Proprietate_FacturaID",
-                table: "Proprietate");
+                name: "IX_Foodtruck_ComandaID",
+                table: "Foodtruck");
 
             migrationBuilder.DropIndex(
-                name: "IX_Contact_FacturaID",
-                table: "Contact");
+                name: "IX_Client_ComandaID",
+                table: "Client");
 
             migrationBuilder.DropColumn(
-                name: "FacturaID",
-                table: "Proprietate");
+                name: "ComandaID",
+                table: "Foodtruck");
 
             migrationBuilder.DropColumn(
-                name: "FacturaID",
-                table: "Contact");
+                name: "ComandaID",
+                table: "Client");
 
             migrationBuilder.AddColumn<int>(
-                name: "ContactID",
-                table: "Factura",
+                name: "ClientID",
+                table: "Comanda",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "ProprietateID",
-                table: "Factura",
+                name: "FoodtruckID",
+                table: "Comanda",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Factura_ContactID",
-                table: "Factura",
-                column: "ContactID");
+                name: "IX_Comanda_ClientID",
+                table: "Comanda",
+                column: "ClientID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Factura_ProprietateID",
-                table: "Factura",
-                column: "ProprietateID");
+                name: "IX_Comanda_FoodtruckID",
+                table: "Comanda",
+                column: "FoodtruckID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Factura_Contact_ContactID",
-                table: "Factura",
-                column: "ContactID",
-                principalTable: "Contact",
+                name: "FK_Comanda_Client_ClientID",
+                table: "Comanda",
+                column: "ClientID",
+                principalTable: "Client",
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Factura_Proprietate_ProprietateID",
-                table: "Factura",
-                column: "ProprietateID",
-                principalTable: "Proprietate",
+                name: "FK_Comanda_Foodtruck_FoodtruckID",
+                table: "Comanda",
+                column: "FoodtruckID",
+                principalTable: "Foodtruck",
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -72,66 +72,64 @@ namespace ProiectWeb.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Factura_Contact_ContactID",
-                table: "Factura");
+                name: "FK_Comanda_Client_ClientID",
+                table: "Comanda");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Factura_Proprietate_ProprietateID",
-                table: "Factura");
+                name: "FK_Comanda_Foodtruck_FoodtruckID",
+                table: "Comanda");
 
             migrationBuilder.DropIndex(
-                name: "IX_Factura_ContactID",
-                table: "Factura");
+                name: "IX_Comanda_ClientID",
+                table: "Comanda");
 
             migrationBuilder.DropIndex(
-                name: "IX_Factura_ProprietateID",
-                table: "Factura");
+                name: "IX_Comanda_FoodtruckID",
+                table: "Comanda");
 
             migrationBuilder.DropColumn(
-                name: "ContactID",
-                table: "Factura");
+                name: "ClientID",
+                table: "Comanda");
 
             migrationBuilder.DropColumn(
-                name: "ProprietateID",
-                table: "Factura");
+                name: "FoodtruckID",
+                table: "Comanda");
 
             migrationBuilder.AddColumn<int>(
-                name: "FacturaID",
-                table: "Proprietate",
+                name: "ComandaID",
+                table: "Foodtruck",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "FacturaID",
-                table: "Contact",
+                name: "ComandaID",
+                table: "Client",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Proprietate_FacturaID",
-                table: "Proprietate",
-                column: "FacturaID");
+                name: "IX_Foodtruck_ComandaID",
+                table: "Foodtruck",
+                column: "ComandaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contact_FacturaID",
-                table: "Contact",
-                column: "FacturaID");
+                name: "IX_Client_ComandaID",
+                table: "Client",
+                column: "ComandaID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Contact_Factura_FacturaID",
-                table: "Contact",
-                column: "FacturaID",
-                principalTable: "Factura",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Restrict);
+                name: "FK_Client_Comanda_ComandaID",
+                table: "Client",
+                column: "ComandaID",
+                principalTable: "Comanda",
+                principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Proprietate_Factura_FacturaID",
-                table: "Proprietate",
-                column: "FacturaID",
-                principalTable: "Factura",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Restrict);
+                name: "FK_Foodtruck_Comanda_ComandaID",
+                table: "Foodtruck",
+                column: "ComandaID",
+                principalTable: "Comanda",
+                principalColumn: "ID");
         }
     }
 }

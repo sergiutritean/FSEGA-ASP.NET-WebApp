@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProiectWeb.Data;
 using ProiectWeb.Models;
 
-namespace ProiectWeb.Pages.Proprietati;
+namespace ProiectWeb.Pages.Foodtrucks;
 
 public class CreateModel : PageModel
 {
@@ -15,7 +15,7 @@ public class CreateModel : PageModel
         _context = context;
     }
 
-    [BindProperty] public Proprietate Proprietate { get; set; }
+    [BindProperty] public Foodtruck Foodtruck { get; set; }
 
     public IActionResult OnGet()
     {
@@ -27,7 +27,7 @@ public class CreateModel : PageModel
     {
         if (!ModelState.IsValid) return Page();
 
-        _context.Proprietate.Add(Proprietate);
+        _context.Foodtruck.Add(Foodtruck);
         await _context.SaveChangesAsync();
 
         return RedirectToPage("./Index");

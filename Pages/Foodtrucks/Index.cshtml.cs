@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ProiectWeb.Data;
 using ProiectWeb.Models;
 
-namespace ProiectWeb.Pages.Proprietati;
+namespace ProiectWeb.Pages.Foodtrucks;
 
 public class IndexModel : PageModel
 {
@@ -16,10 +16,10 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Proprietate> Proprietate { get; set; }
+    public IList<Foodtruck> Foodtruck { get; set; }
 
     public async Task OnGetAsync()
     {
-        Proprietate = await _context.Proprietate.ToListAsync();
+        Foodtruck = await _context.Foodtruck.ToListAsync();
     }
 }

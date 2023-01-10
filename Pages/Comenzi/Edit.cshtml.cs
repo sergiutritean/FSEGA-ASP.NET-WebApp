@@ -21,7 +21,7 @@ namespace ProiectWeb.Pages.Facturi
         }
 
         [BindProperty]
-        public Factura Factura { get; set; }
+        public Comanda Comanda { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,14 @@ namespace ProiectWeb.Pages.Facturi
                 return NotFound();
             }
 
-            Factura = await _context.Factura.Include(b => b.Contact).Include(c => c.Proprietate).FirstOrDefaultAsync(m => m.ID == id);
+            Comanda = await _context.Comanda.Include(b => b.Client).Include(c => c.Foodtruck).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Factura == null)
+            if (Comanda == null)
             {
                 return NotFound();
             }
-            ViewData["ContactID"] = new SelectList(_context.Set<Contact>(), "ID", "Nume");
-            ViewData["ProprietateID"] = new SelectList(_context.Set<Proprietate>(), "ID", "Adresa");
+            ViewData["ClientID"] = new SelectList(_context.Set<Client>(), "ID", "Nume");
+            ViewData["FoodtruckID"] = new SelectList(_context.Set<Foodtruck>(), "ID", "Adresa");
             return Page();
         }
 
@@ -50,7 +50,7 @@ namespace ProiectWeb.Pages.Facturi
                 return Page();
             }
 
-            _context.Attach(Factura).State = EntityState.Modified;
+            _context.Attach(Comanda).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace ProiectWeb.Pages.Facturi
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FacturaExists(Factura.ID))
+                if (!ComandaExists(Comanda.ID))
                 {
                     return NotFound();
                 }
@@ -71,9 +71,9 @@ namespace ProiectWeb.Pages.Facturi
             return RedirectToPage("./Index");
         }
 
-        private bool FacturaExists(int id)
+        private bool ComandaExists(int id)
         {
-            return _context.Factura.Any(e => e.ID == id);
+            return _context.Comanda.Any(e => e.ID == id);
             
         }
     }

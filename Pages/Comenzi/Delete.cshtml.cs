@@ -20,7 +20,7 @@ namespace ProiectWeb.Pages.Facturi
         }
 
         [BindProperty]
-        public Factura Factura { get; set; }
+        public Comanda Comanda { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace ProiectWeb.Pages.Facturi
                 return NotFound();
             }
 
-            Factura = await _context.Factura.FirstOrDefaultAsync(m => m.ID == id);
+            Comanda = await _context.Comanda.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Factura == null)
+            if (Comanda == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace ProiectWeb.Pages.Facturi
                 return NotFound();
             }
 
-            Factura = await _context.Factura.FindAsync(id);
+            Comanda = await _context.Comanda.FindAsync(id);
 
-            if (Factura != null)
+            if (Comanda != null)
             {
-                _context.Factura.Remove(Factura);
+                _context.Comanda.Remove(Comanda);
                 await _context.SaveChangesAsync();
             }
 
