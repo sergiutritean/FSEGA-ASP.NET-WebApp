@@ -31,24 +31,6 @@ namespace ProiectWeb.Migrations
             );
             
             migrationBuilder.CreateTable(
-                name: "Comanda",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation(
-                            "Npgsql:ValueGenerationStrategy", 
-                            Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.SerialColumn
-                        ),
-                    Suma = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Descriere = table.Column<string>(type: "text")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comanda", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Client",
                 columns: table => new
                 {
@@ -60,25 +42,12 @@ namespace ProiectWeb.Migrations
                     Nume = table.Column<string>(type: "text", nullable: true),
                     NrTel = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    ComandaID = table.Column<int>(type: "int", nullable: true),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Client", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Client_Comanda_ComandaID",
-                        column: x => x.ComandaID,
-                        principalTable: "Comanda",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-/*                    table.ForeignKey(
-                        name: "FK_Comanda_Utilizator_IDUtilizator",
-                        column: x => x.IDUtilizator,
-                        principalTable: "Utilizator",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);*/
                 });
-
+            
             migrationBuilder.CreateTable(
                 name: "Foodtruck",
                 columns: table => new
@@ -91,43 +60,53 @@ namespace ProiectWeb.Migrations
                     Tip = table.Column<string>(type: "text", nullable: true),
                     Nume = table.Column<string>(type: "text", nullable: true),
                     Adresa = table.Column<string>(type: "text", nullable: true),
-                    ComandaID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Foodtruck", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Foodtruck_Comanda_ComandaID",
-                        column: x => x.ComandaID,
-                        principalTable: "Comanda",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Client_ComandaID",
-                table: "Client",
-                column: "ComandaID");
+            migrationBuilder.CreateTable(
+                name: "Comanda",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation(
+                            "Npgsql:ValueGenerationStrategy",
+                            Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.SerialColumn
+                        ),
+                    Suma = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Descriere = table.Column<string>(type: "text"),
+                    ClientID = table.Column<int>(type: "int"),
+                    FoodtruckID = table.Column<int>(type: "int")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comanda", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Comanda_Client_ClientID",
+                        column: x => x.ClientID,
+                        principalTable: "Client",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comanda_Foodtruck_FoodtruckID",
+                        column: x => x.FoodtruckID,
+                        principalTable: "Foodtruck",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });         
 
             migrationBuilder.CreateIndex(
-                name: "IX_Foodtruck_ComandaID",
-                table: "Foodtruck",
-                column: "ComandaID");
-            
-/*            migrationBuilder.CreateIndex(
-                name: "IX_Comanda_IDUtilizator",
+                name: "IX_Comanda_ClientID",
                 table: "Comanda",
-                column: "IDUtilizator");
-            
+                column: "ClientID");
+
             migrationBuilder.CreateIndex(
-                name: "IX_Client_IDUtilizator",
-                table: "Client",
-                column: "IDUtilizator");
-            
-            migrationBuilder.CreateIndex(
-                name: "IX_Foodtruck_IDUtilizator",
-                table: "Foodtruck",
-                column: "IDUtilizator");*/
+                name: "IX_Comanda_FoodtruckID",
+                table: "Comanda",
+                column: "FoodtruckID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
